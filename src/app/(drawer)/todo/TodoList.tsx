@@ -1,12 +1,14 @@
 import { View, Text, Button,StyleSheet, Pressable } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
-import { todoQuery } from '@/src/tanstack/todoTanstack';
+import { todoQuery } from '@/src/tanstack/tanstackTodo';
 import { useQuery  } from '@tanstack/react-query';
 import { Link } from 'expo-router';
 import xlog from '@/src/xlog';
 
 export default function TodoList() {     
-  const query =useQuery(todoQuery)       
+  xlog('todolist');
+  const query =useQuery(todoQuery)      
+  
   
   const Item = function ({item}: {item: any}) {  
     return (

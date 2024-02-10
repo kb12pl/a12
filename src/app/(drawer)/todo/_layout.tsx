@@ -7,11 +7,10 @@ export default function LayoutTodo() {
   return (        
       <Stack>
         <Stack.Screen 
-        name='TodoList'
-        redirect={true} 
+        name='todolist'        
         options={{
           headerShown:false,
-        }} />
-        
-      </Stack>      )
+        }} />        
+      </Stack>     
+ )
 }

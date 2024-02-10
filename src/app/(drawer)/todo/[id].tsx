@@ -3,17 +3,14 @@ import React from 'react'
 import { useLocalSearchParams } from 'expo-router'
 import { useQuery } from '@tanstack/react-query';
 import xlog from '@/src/xlog';
-import { todoQuery } from '@/src/tanstack/todoTanstack';
+import {useTodo } from '@/src/tanstack/tanstackTodo';
 
-export default function Page() {
-  const {id}=useLocalSearchParams();
-  const idx=Number(id);
-  const query=useQuery(todoQuery);  
-  if(!query.data) 
+export default function Page() {  
+  const {id}=useLocalSearchParams();  
+  const query=useTodo(id);  
+  const todo=query.data;
+  if(!todo)
     return null;
-  
-    const todo=query.data[idx];  
-
   return (
     <View>
       <Text>{todo.title}</Text>
