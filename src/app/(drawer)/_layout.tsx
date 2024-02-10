@@ -1,49 +1,25 @@
 import { Drawer } from 'expo-router/drawer';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Slot } from 'expo-router';
 import xlog from '@/src/xlog';
 
-
-export default function DrawerLayout() {
-  xlog('drawer layoyt');
-  const queryClient = new QueryClient()      
+export default function DrawerLayout() {  
+  xlog('drawer layout');  
   return (    
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <QueryClientProvider client={queryClient}>
-      <Drawer>
-        
+      <Drawer>        
         <Drawer.Screen
-          name="todo"
+          name="todo"          
           options={{
             drawerLabel: 'Todo',
             title: 'Todo List ok',
-
-            //headerTitle:'ewr',
-            //headerShown:false,
           }}
         />
-   <Drawer.Screen
+        <Drawer.Screen
           name="shoping"
           options={{
             drawerLabel: 'Shoping',
-            title: 'Shoping List',
-            headerTitle:'header',
-          }}
-     
+            title: 'Shoping List',            
+          }}     
         />
-      
-      </Drawer>    
-      </QueryClientProvider>
-    </GestureHandlerRootView>              
+        <Drawer.Screen name="index" options={{drawerItemStyle: { display: 'none' }}} />
+      </Drawer>          
   );
 }
-
-
-//<Drawer.Screen name="index" options={{drawerItemStyle: { display: 'none' }}} />
-
-
-/*
-
-
-        */

@@ -1,18 +1,17 @@
 import { View, Text } from 'react-native'
-import React from 'react'
 import { Slot, Stack } from 'expo-router'
 import xlog from '@/src/xlog'
 
 export default function LayoutTodo() {
-  xlog('leyout todo');
+  xlog('layout todo');
   return (        
       <Stack>
         <Stack.Screen 
         name='TodoList'
+        redirect={true} 
         options={{
           headerShown:false,
         }} />
         
-      </Stack>    
-  )
+      </Stack>      )
 }

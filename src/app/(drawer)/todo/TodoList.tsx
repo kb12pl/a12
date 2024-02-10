@@ -17,8 +17,9 @@ export default function TodoList() {
     </Link>
     )
   }  
-
+  
   return (    
+    
     <View>      
       <FlatList data={query.data} renderItem={Item} />   
     </View>
