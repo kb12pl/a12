@@ -1,8 +1,10 @@
 import { Drawer } from 'expo-router/drawer';
-import xlog from '@/src/xlog';
+import xlog,{ ok } from '@/src/xlog';
+import { Button } from 'react-native';
+import { LinearTransition } from 'react-native-reanimated';
+import { Link, Slot } from 'expo-router';
 
-export default function DrawerLayout() {
-  xlog('drawer layout');
+export default function DrawerLayout() {  
   return (
     <Drawer>
       <Drawer.Screen
@@ -10,6 +12,11 @@ export default function DrawerLayout() {
         options={{
           drawerLabel: 'Todo',
           title: 'Todo List ok',
+          headerRight: () => (
+            <Link href="/todo/add" asChild>
+            <Button title="+"/>
+            </Link>
+          ),
         }}
       />
       <Drawer.Screen
@@ -19,7 +26,7 @@ export default function DrawerLayout() {
           title: 'Shoping List',
         }}
       />
-      <Drawer.Screen name="index" options={{ drawerItemStyle: { display: 'none' } }} />
+      <Drawer.Screen name="index" options={{ drawerItemStyle: { display: 'none' } }} />      
     </Drawer>
   );
 }
