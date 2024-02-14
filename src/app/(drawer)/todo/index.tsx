@@ -1,11 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import { Redirect } from 'expo-router';
+import { Redirect, usePathname } from 'expo-router';
 import xlog from '@/src/xlog';
 
 export default function IndexTodo() {
-  xlog("index todo");
+  xlog(usePathname());
   return (
-     <Redirect href={'/todo/TodoList'} />    
+     <Redirect href={'/(drawer)/todo/listTodo'} />              
   )
 }

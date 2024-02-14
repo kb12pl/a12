@@ -18,6 +18,8 @@
     "@react-navigation/native": "^6.0.2",
     "@supabase/supabase-js": "^2.39.3",
     "@tanstack/react-query": "^5.18.0",
+    "babel-plugin-transform-dirname-filename": "^1.1.0",
+    "babel-plugin-transform-line": "^0.10.0",
     "expo": "~50.0.6",
     "expo-constants": "~15.4.5",
     "expo-font": "~11.10.2",

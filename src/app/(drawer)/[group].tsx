@@ -1,14 +1,14 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import { usePathname } from 'expo-router';
 import xlog from '@/src/xlog';
-import { useQuery } from '@tanstack/react-query';
 
-export default function Test() { 
-  
-  
+export default function Group() {  
+  const g=usePathname();
+
   return (
     <View>
-      <Text>Test</Text>
+      <Text>Group {g}</Text>
     </View>
   )
 }

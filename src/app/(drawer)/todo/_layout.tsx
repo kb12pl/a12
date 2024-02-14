@@ -1,23 +1,31 @@
-import { View, Text } from 'react-native'
-import { Slot, Stack } from 'expo-router'
+import { View, Text, Button } from 'react-native'
+import { Link, Slot, Stack, usePathname } from 'expo-router'
 import xlog from '@/src/xlog'
 
 export default function LayoutTodo() {
-  xlog('layout todo');
+  xlog(usePathname());
   return (
     <Stack>
       <Stack.Screen
-        name='todolist'
+        name='listTodo'
         options={{
           headerShown: false,
         }} />
       <Stack.Screen
-        name="add"
-        options={{
-          // Set the presentation mode to modal for our modal route.
+        name="createTodo"
+        options={{          
           presentation: 'modal',
+          headerShown: false,
         }}
       />
+    <Stack.Screen
+      name="[id]"
+      options={{
+        presentation: 'modal',
+        headerShown: false,
+      }}
+    />
+
     </Stack>
   )
 }

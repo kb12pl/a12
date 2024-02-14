@@ -16,13 +16,12 @@ const InitialLayout = () => {
   useEffect(() => {
     //xlog('useefect');
     if (!initialized) return;
-
     // Check if the path/url is in the (auth) group
-    const inAuthGroup = segments[0] === '(auth)';
+    const inAuthGroup = segments[0] === '(drawer)';
 
     if (session && !inAuthGroup) {
       xlog('Redirect TO START');
-      router.replace('/(drawer)');
+      router.replace('/(drawer)/todo/');
     } else if (!session) {
       xlog('Redirect unauthenticated users to the login page');
       router.replace('/');

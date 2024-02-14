@@ -1,15 +1,21 @@
 import { View, Text, Button,StyleSheet, Pressable } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
-import { todoQuery } from '@/src/tanstack/tanstackTodo';
+import { todoQuery } from '@/src/query/queryTodo';
 import { useQuery  } from '@tanstack/react-query';
-import { Link } from 'expo-router';
+import { Link, usePathname, useRouter } from 'expo-router';
 import xlog from '@/src/xlog';
+import { useEffect } from 'react';
 
-export default function TodoList() {     
-  xlog('todolist');
+export default function ListTodo() {     
+  //xlog(usePathname(),new Error().stack);
+  //rconsole.log(__filename, __dirname);
   const query =useQuery(todoQuery)      
-  
-  
+  const router=useRouter();
+  //useEffect(()=>{ 
+  //  router.push('/(drawer)/todo/5');  
+  //},[])
+
+
   const Item = function ({item}: {item: any}) {  
     return (
     <Link href={`/todo/${item.id}`} asChild>
@@ -37,7 +43,7 @@ const styles = StyleSheet.create({
   },
   text: {
      //color: theme.colors.typography
-     color: 'red',
-     fontSize:30
+     //color: 'red',
+     fontSize:20
   }
 })

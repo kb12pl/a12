@@ -1,18 +1,21 @@
 import { createTodo } from '@/src/fetchLocal/todoFetchLocal';
-import { useCreateTodo } from '@/src/tanstack/tanstackTodo';
+import { useCreateTodo } from '@/src/query/queryTodo';
 import { ok } from '@/src/xlog';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import {Button, SafeAreaView, StyleSheet, TextInput} from 'react-native';
 
 
 export default function TextInputExample(){
   const [text, onChangeText] = React.useState('Useless Text');  
-  const add=useCreateTodo()
+  const add=useCreateTodo();
+  const router=useRouter();
 
 
   const save=()=>{    
     
     add.mutate({title:text})
+    router.back();
     
   }
   return (
