@@ -11,18 +11,22 @@ function isError(fun:string, ret:any) {
     }
     if (!ret.error)
         return;
-    xlog(fun,'- - > >',ret.error.message);
+    xlog('ERROR supabase',fun,'- - > >',ret.error.message);
     return 1;
 }
 
 export const getTodos = async () => {
-    let { data: todos } = await supabase.from('todo').select('id,title');
-    return todos;
+    let ret = await supabase.from('todo').select('id,title');
+    if (isError('getTodos',ret))
+        return null;
+    return ret.data;
 }
 
 export const getTodo = async (id: string) => {
-    let { data: todos } = await supabase.from('todo').select('id,title').eq('id', id);
-    return todos && todos[0];
+    let ret = await supabase.from('todo').select('id,title,type').eq('id', id);
+    if (isError('getTodos',ret))
+        return null;    
+    return ret.data![0];    
 }
 
 export const createTodo = async (data: Todo) => {            

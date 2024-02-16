@@ -18,7 +18,7 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
       <DrawerItemList {...props} />      
       {
         query.isSuccess ? query.data?.map((todo) => {
-          return <DrawerItem label={todo.title} key={todo.id} onPress={() => router.push(`/(drawer)/todo/${todo.id}`)} />
+          return <DrawerItem label={todo.title} key={todo.id} onPress={() => router.push(`/(drawer)/${todo.id}`)} />
         }) : null
 
       }
@@ -51,6 +51,7 @@ export default function DrawerLayout() {
       <Drawer.Screen name="index" options={{ drawerItemStyle: { display: 'none' } }} />
       <Drawer.Screen name="[group]" options={{ drawerItemStyle: { display: 'none' } }} />
     </Drawer>
+    
   );
 }
 

@@ -17,7 +17,7 @@ export function useGroupsTodo(){
 }    
 
 
-export function useTodo(id:string|string[]){  
+export function useTodo(id:string){  
   return useQuery({
     queryKey:['todo',{id}],
     queryFn:()=>getTodo(id),
