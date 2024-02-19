@@ -1,9 +1,8 @@
 import { Alert, View, Button, TextInput, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { useState } from 'react';
-import React from 'react';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { supabase } from '../config/initSupabase';
-import xlog from '../xlog';
+import xlog from '@/src/xlog';
 
 const Login = () => {
   const [email, setEmail] = useState(process.env.EXPO_PUBLIC_SUPABASE_USER||'');
