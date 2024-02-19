@@ -19,7 +19,7 @@ export default function LayoutTodo() {
         }}
       />
     <Stack.Screen
-      name="[id]"
+      name="[idTodo]"
       options={{
         presentation: 'modal',
         headerShown: false,

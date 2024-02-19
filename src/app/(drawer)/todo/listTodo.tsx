@@ -7,14 +7,8 @@ import xlog from '@/src/xlog';
 import { useEffect } from 'react';
 
 export default function ListTodo() {     
-  //xlog(usePathname(),new Error().stack);
-  //rconsole.log(__filename, __dirname);
   const query =useQuery(todoQuery)      
   const router=useRouter();
-  //useEffect(()=>{ 
-  //  router.push('/(drawer)/todo/5');  
-  //},[])
-
 
   const Item = function ({item}: {item: any}) {  
     return (
@@ -24,10 +18,8 @@ export default function ListTodo() {
     </Pressable>
     </Link>
     )
-  }  
-  
-  return (    
-    
+  }    
+  return (        
     <View>      
       <FlatList data={query.data} renderItem={Item} />   
     </View>

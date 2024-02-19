@@ -22,6 +22,21 @@ export const getTodos = async () => {
     return ret.data;
 }
 
+export const getListsTodo = async () => {
+    let ret = await supabase.from('todo').select('id,title').eq('type','list');
+    if (isError('getTodos',ret))
+        return null;
+    return ret.data;
+}
+
+export const getTypesTodo = async () => {
+    let ret = await supabase.from('types').select('type,name');
+    if (isError('getTypesTodo',ret))
+        return null;
+    return ret.data;
+}
+
+
 export const getTodo = async (id: string) => {
     let ret = await supabase.from('todo').select('id,title,type').eq('id', id);
     if (isError('getTodos',ret))
@@ -39,14 +54,15 @@ export const createTodo = async (data: Todo) => {
 }
 
 
-export const deleteTodo = async (id:string) => {            
-    xlog('start', 'delete  Todo',id);    
-    const ret = await supabase.from('todo').delete().eq('id',id)
-    
-    if (isError('deleteTodo',ret))
-        return 1;
-    xlog('end', 'deleteTodo');
-    return 0;
+export const deleteTodo = async (id:string) => {                
+    const ret = await supabase.from('todo').delete().eq('id',id)    
+    return isError('deleteTodo',ret)?1:0;
+}
+
+export const saveTodo = async (todo:Todo) => {             
+    xlog(todo.id,todo.type,123);
+    const ret = await supabase.from('todo').update({'type':todo.type}).eq('id',todo.id)    
+    return isError('updateTodo',ret)?1:0;
 }
 
 

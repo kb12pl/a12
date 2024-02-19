@@ -8,9 +8,11 @@ import xlog from '../xlog';
 
 
 const InitialLayout = () => {
+  const router = useRouter();
+/*
+
   const { session, initialized } = useAuth();
   const segments = useSegments();
-  const router = useRouter();
 
 
   useEffect(() => {
@@ -28,6 +30,11 @@ const InitialLayout = () => {
     }
   }, [session, initialized]);
 
+  
+  */
+  useEffect(() => {
+    router.replace('/(drawer)/todo/');
+  },[]);
   return <Slot />;
 };
 
