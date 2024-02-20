@@ -1,5 +1,5 @@
 //import { getTodos } from "@/fetchLocal/todoFetchLocal";
-import { getTodos,getTodo, createTodo, deleteTodo, getTypesTodo, saveTodo, getListsTodo } from "@/src/apiSupabase/apiSupabaseTodo";
+import { getTodos,getTodo, createTodo, deleteTodo, getTypesTodo, saveTodo, getListsTodo, getStartTodo } from "@/src/apiSupabase/apiSupabaseTodo";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import xlog from "../xlog";
 import { Todo } from "@/src/types/todo";
@@ -8,6 +8,9 @@ import { useAuth } from "@/src/provider/AuthProvider";
 
 
 export const todoQuery={ queryKey: ['todos'], queryFn: getTodos }
+
+
+
 
 export function useGroupsTodo(){
     return useQuery({ 
@@ -33,6 +36,15 @@ export function useTodo(id:string){
     staleTime: 15 * 1000,
   })
 }
+
+
+export function useStartTodo(){
+  return useQuery({ 
+    queryKey: ['start'], 
+    queryFn: getStartTodo 
+})  
+}    
+
 
 export function useCreateTodo() {  
   const queryClient = useQueryClient();

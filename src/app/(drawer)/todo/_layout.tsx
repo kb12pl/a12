@@ -7,24 +7,18 @@ export default function LayoutTodo() {
   return (
     <Stack>
       <Stack.Screen
-        name='listTodo'
-        options={{
-          headerShown: false,
-        }} />
-      <Stack.Screen
         name="createTodo"
-        options={{          
+        options={{
           presentation: 'modal',
           headerShown: false,
         }}
       />
-    <Stack.Screen
-      name="[idTodo]"
-      options={{
-        presentation: 'modal',
-        headerShown: false,
-      }}
-    />
+      <Stack.Screen
+        name="[idTodo]"
+        options={{
+          headerShown: false,
+        }}
+      />
 
     </Stack>
   )

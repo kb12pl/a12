@@ -37,6 +37,14 @@ export const getTypesTodo = async () => {
 }
 
 
+export const getStartTodo = async () => {
+    let ret = await supabase.from('todo').select('id').eq('type', "start");
+    if (isError('getTodos',ret))
+        return null;    
+    return ret.data![0];    
+}
+
+
 export const getTodo = async (id: string) => {
     let ret = await supabase.from('todo').select('id,title,type').eq('id', id);
     if (isError('getTodos',ret))

@@ -1,11 +1,12 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-import { useId, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import xlog from "@/src/xlog";
 import { useDeleteTodo, useSaveTodo, useTodo } from "@/src/query/queryTodo";
 import KbTypePicker from "@/src/components/KbTypePicker";
 import { Todo } from "@/src/types/todo";
 import KbListTodo from "@/src/components/KbListTodo";
+import KbMenuContext from "@/src/components/KbMenuContext";
 
 export default function Page() {
   const { idTodo } = useLocalSearchParams<{ idTodo: string }>();
@@ -19,6 +20,12 @@ export default function Page() {
     return {} as Todo;
   }, []);
   const [disablaSave, setDisableSeve] = useState(true);
+
+  //const menu=useContext(KbMenuContext)
+
+  //useEffect(()=>{
+   // menu.setMenuFun(idTodo);  
+  //})
 
   const deleteTodo = () => {
     deleteMutation.mutate(String(idTodo));
@@ -40,15 +47,17 @@ export default function Page() {
   }
 
   xlog('render',initType.current)
+
+  
   
   if (initType.current == "list") {
     xlog(123, todo.type);
     return <KbListTodo />;
   }
-
+  
   return (
     <View style={styles.container}>
-      <Text>123</Text>
+      
       <Text>{todo.title}</Text>
       <KbTypePicker
         selectedValue={todo.type || "simple"}

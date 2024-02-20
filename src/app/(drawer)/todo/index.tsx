@@ -1,19 +1,19 @@
 import { Text, View } from "react-native";
-import React from "react";
-import { Redirect, usePathname } from "expo-router";
+import React, { useEffect } from "react";
+import { Redirect, router, usePathname } from "expo-router";
 import xlog from "@/src/xlog";
-import { useGroupsTodo } from "@/src/query/queryTodo";
+import { useStartTodo } from "@/src/query/queryTodo";
+
 
 export default function IndexTodo() {
   xlog("index todo", usePathname());
 
-  const query = useGroupsTodo();
-  
+  const query = useStartTodo();
+  useEffect(()=>{
+    if (query.isSuccess) 
+      router.replace(`/(drawer)/todo/${query.data?.id}`);
 
-  if (query.isSuccess && query.data) {
-    const id=query.data[0].id;
-    return <Redirect href={`/todo/${id}`} />;
-  }
+  },[query]);
 
-  return <Text>111</Text>;
+  return <Text>Start</Text>;
 }
