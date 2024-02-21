@@ -2,8 +2,7 @@ import { View, Text, Button } from 'react-native'
 import { Link, Slot, Stack, usePathname } from 'expo-router'
 import xlog from '@/src/xlog'
 
-export default function LayoutTodo() {
-  xlog(usePathname());
+export default function LayoutTodo() {  
   return (
     <Stack>
       <Stack.Screen
@@ -14,9 +13,9 @@ export default function LayoutTodo() {
         }}
       />
       <Stack.Screen
-        name="[idTodo]"
+        name="[todoId]"
         options={{
-          headerShown: false,
+          //headerShown: false,
         }}
       />
 

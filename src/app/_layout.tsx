@@ -19,11 +19,11 @@ const InitialLayout = () => {
     //xlog('useefect');
     if (!initialized) return;
     // Check if the path/url is in the (auth) group
-    const inAuthGroup = segments[0] === '(drawer)';
+    const inAuthGroup = segments[0] === 'todo';
 
     if (session && !inAuthGroup) {
       xlog('Redirect TO START');
-      router.replace('/(drawer)/todo/');
+      router.replace('/todo/');
     } else if (!session) {
       xlog('Redirect unauthenticated users to the login page');
       router.replace('/');

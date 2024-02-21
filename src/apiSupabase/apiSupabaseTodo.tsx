@@ -23,10 +23,9 @@ export const getTodos = async () => {
 }
 
 export const getListsTodo = async (id) => {
-    let ret = await supabase.from('list').select('kid,kid(id,title)').eq('parent',id);
-    if (isError('getTodos',ret))
-        return null;
-    xlog(ret.data);
+    let ret = await supabase.from('list').select('id,title').eq('parent',id);
+    if (isError('getListsTodo',ret))
+        return null;    
     return ret.data;
 }
 
@@ -40,7 +39,7 @@ export const getTypesTodo = async () => {
 
 export const getStartTodo = async () => {
     let ret = await supabase.from('todo').select('id').eq('first', 1);
-    if (isError('getTodos',ret))
+    if (isError('getStartTodo',ret))
         return null;    
     return ret.data![0];    
 }
@@ -48,7 +47,7 @@ export const getStartTodo = async () => {
 
 export const getTodo = async (id: string) => {
     let ret = await supabase.from('todo').select('id,title,type').eq('id', id);
-    if (isError('getTodos',ret))
+    if (isError('getTodo',ret))
         return null;    
     return ret.data![0];    
 }

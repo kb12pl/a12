@@ -9,7 +9,7 @@ export default function KbListTodo(props) {
 
   const Item = function ({ item }: { item: any }) {
     return (
-      <Link href={`/todo/${item.id}`} asChild>
+      <Link push href={`/todo/${item.id}`} asChild>
         <Pressable>
           <Text style={styles.text}>{item.title}</Text>
         </Pressable>
