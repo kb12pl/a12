@@ -38,7 +38,7 @@ export default function Page() {
   };
 
   
-  xlog('before',initType.current)
+  
   if (query.isSuccess && query.data) {
     todo = query.data;
     initType.current = todo.type;
@@ -46,14 +46,13 @@ export default function Page() {
     return;
   }
 
-  xlog('render',initType.current)
-
+  
   
   
   if (initType.current == "list") {
-    xlog(123, todo.type);
-    return <KbListTodo />;
+    return <KbListTodo id={idTodo} />;
   }
+  
   
   return (
     <View style={styles.container}>

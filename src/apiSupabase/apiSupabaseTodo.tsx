@@ -22,10 +22,11 @@ export const getTodos = async () => {
     return ret.data;
 }
 
-export const getListsTodo = async () => {
-    let ret = await supabase.from('todo').select('id,title').eq('type','list');
+export const getListsTodo = async (id) => {
+    let ret = await supabase.from('list').select('kid,kid(id,title)').eq('parent',id);
     if (isError('getTodos',ret))
         return null;
+    xlog(ret.data);
     return ret.data;
 }
 
@@ -38,7 +39,7 @@ export const getTypesTodo = async () => {
 
 
 export const getStartTodo = async () => {
-    let ret = await supabase.from('todo').select('id').eq('type', "start");
+    let ret = await supabase.from('todo').select('id').eq('first', 1);
     if (isError('getTodos',ret))
         return null;    
     return ret.data![0];    

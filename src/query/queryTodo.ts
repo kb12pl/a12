@@ -10,14 +10,15 @@ import { useAuth } from "@/src/provider/AuthProvider";
 export const todoQuery={ queryKey: ['todos'], queryFn: getTodos }
 
 
+export function useListTodo(id:string){  
+  return useQuery({
+    queryKey:['list',{id}],
+    queryFn:()=>getListsTodo(id),
+    staleTime: 15 * 1000,
+  })
+}
 
 
-export function useGroupsTodo(){
-    return useQuery({ 
-      queryKey: ['groups'], 
-      queryFn: getListsTodo 
-  })  
-}    
 
 export function useTypesTodo(){
   return useQuery({
@@ -38,6 +39,8 @@ export function useTodo(id:string){
 }
 
 
+
+
 export function useStartTodo(){
   return useQuery({ 
     queryKey: ['start'], 
@@ -53,18 +56,6 @@ export function useCreateTodo() {
     mutationFn: (data: Todo) => {      
       return createTodo(data)
     },
-    onMutate: () => {
-      console.log("mutate");
-    },
-
-    onError: () => {
-      console.log("error");
-    },
-
-    onSuccess: () => {
-      console.log("success");
-    },
-
     onSettled: async (_, error) => {
       console.log("settled");
       if (error) {

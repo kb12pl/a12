@@ -1,10 +1,10 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
-import { todoQuery } from "@/src/query/queryTodo";
+import {  useListTodo } from "@/src/query/queryTodo";
 import { Link, useRouter } from "expo-router";
 
-export default function KbListTodo() {
-  const query = useQuery(todoQuery);
+export default function KbListTodo(props) {
+  const query = useListTodo(props.id);
   const router = useRouter();
 
   const Item = function ({ item }: { item: any }) {
@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
   text: {
     //color: theme.colors.typography
     //color: 'red',
-    fontSize: 20,
+    fontSize: 30,
   },
 });
