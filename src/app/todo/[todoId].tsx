@@ -37,7 +37,7 @@ export default function Page() {
 
   const saveTodo = () => {
     saveMutation.mutate(todo);
-    xlog(todo);
+    
   };
 
   

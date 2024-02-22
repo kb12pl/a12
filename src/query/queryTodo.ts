@@ -1,5 +1,5 @@
 //import { getTodos } from "@/fetchLocal/todoFetchLocal";
-import { getTodos,getTodo, createTodo, deleteTodo, getTypesTodo, saveTodo, getListsTodo, getStartTodo } from "@/src/apiSupabase/apiSupabaseTodo";
+import { getTodos,getTodo, createTodo, deleteTodo, getTypesTodo, saveTodo, getListsTodo, getStartTodo, addTodo } from "@/src/apiSupabase/apiSupabaseTodo";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import xlog from "../xlog";
 import { Todo } from "@/src/types/todo";
@@ -48,6 +48,23 @@ export function useStartTodo(){
 })  
 }    
 
+
+export function useAddTodo() {  
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Todo) => {      
+      return addTodo(data)
+    },
+    onSettled: async (_, error) => {
+      console.log("settled");
+      if (error) {
+        console.log(error);
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ["todos"] });
+      }
+    },
+  });
+}
 
 export function useCreateTodo() {  
   const queryClient = useQueryClient();
