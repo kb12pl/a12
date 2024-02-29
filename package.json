@@ -22,7 +22,7 @@
     "@tanstack/react-query": "^5.18.0",
     "babel-plugin-transform-dirname-filename": "^1.1.0",
     "babel-plugin-transform-line": "^0.10.0",
-    "expo": "~50.0.7",
+    "expo": "~50.0.8",
     "expo-constants": "~15.4.5",
     "expo-font": "~11.10.2",
     "expo-linking": "~6.2.2",
