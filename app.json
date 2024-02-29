@@ -23,7 +23,8 @@
         "foregroundImage": "./assets/images/kb12.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.kb12pl.a12"
+      "package": "com.kb12pl.a12",
+      "versionCode":2
     },
     "web": {
       "bundler": "metro",
