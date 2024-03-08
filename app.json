@@ -2,7 +2,7 @@
   "expo": {
     "name": "a12",
     "slug": "a12",
-    "version": "10.0.0",
+    "version": "15.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/kb12.png",
     "scheme": "a12",
@@ -24,7 +24,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.kb12pl.a12",
-      "versionCode":2
+      "versionCode":17
     },
     "web": {
       "bundler": "metro",
