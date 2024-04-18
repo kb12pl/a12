@@ -1,4 +1,4 @@
-import { Button, FlatList, Pressable, StyleSheet, Text, TextInput, TextInputBase, View } from "react-native";
+import { Alert, Button, FlatList, Modal, Pressable, SafeAreaView, StatusBar, StyleSheet, Text, TextInput, TextInputBase, View } from "react-native";
 import { useQuery } from "@tanstack/react-query";
 import { useAddTodo, useListTodo } from "@/src/query/queryTodo";
 import { Link, useRouter } from "expo-router";
@@ -7,22 +7,9 @@ import BottomSheet from '@gorhom/bottom-sheet';
 import xlog from "../xlog";
 import KbText from "./KbText";
 import { KbAddTodo } from "./KbAddTodo";
+import KbBar from "./KbBar";
 
 
-const Bar = function (props) {
-  const [plus, setPlus] = useState(true);
-  const plusOnPress = () => {
-    props.show(plus)
-    setPlus(!plus);
-  }
-  return (
-    <View style={{ flexDirection: "row", margin: 10 }}>
-      <Button title="menu" />
-      <TextInput style={{ flex: 1 }} />
-      <Button title={plus ? "+++" : "xxx"} onPress={plusOnPress} />
-    </View>
-  )
-}
 
 export default function KbListTodo(props) {
   const todoId=props.id
@@ -48,8 +35,9 @@ export default function KbListTodo(props) {
     );
   };
   return (
+    <SafeAreaView style={{ flex: 1 }}>
     <View style={{ flex: 1 }}>
-      <Bar show={show} />
+      <KbBar show={show} />
       <FlatList data={query.data} renderItem={Item} refreshing={false} onRefresh={onRefresh}/>
       <BottomSheet
         ref={bottomSheetRef}
@@ -60,6 +48,9 @@ export default function KbListTodo(props) {
         <KbAddTodo parent={todoId} show={show} />
       </BottomSheet>
     </View>
+    <StatusBar  />
+    </SafeAreaView>
+    
   );
 }
 
@@ -70,9 +61,45 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // backgroundColor: theme.colors.background
   },
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
   text: {
     //color: theme.colors.typography
     //color: 'red',
     fontSize: 30,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
   },
 });

@@ -28,8 +28,6 @@ export default function Page() {
 
   
 
- 
-
   const deleteTodo = () => {
     deleteMutation.mutate(String(todoId));
     router.back();

@@ -15,7 +15,7 @@ export default function LayoutTodo() {
       <Stack.Screen
         name="[todoId]"
         options={{
-          //headerShown: false,
+          headerShown: false,
         }}
       />
 
