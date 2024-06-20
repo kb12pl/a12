@@ -1,60 +1,53 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-import { useContext, useEffect, useId, useMemo, useRef, useState } from "react";
-import { useLocalSearchParams, useRouter } from "expo-router";
-import xlog from "@/src/xlog";
+import { useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from "react";
+import { useFocusEffect, useLocalSearchParams, usePathname, useRouter } from "expo-router";
 import { useDeleteTodo, useSaveTodo, useTodo } from "@/src/query/queryTodo";
-import KbTypePicker from "@/src/components/KbTypePicker";
 import { Todo } from "@/src/types/todo";
+
 import KbListTodo from "@/src/components/KbListTodo";
 import KbMenuContext from "@/src/components/KbMenuContext";
+import xlog from "@/src/xlog";
+import KbTypePicker from "@/src/components/KbTypePicker";
+
+
 
 export default function Page() {
-  const { idTodo } = useLocalSearchParams<{ idTodo: string }>();
-  const query = useTodo(idTodo);
+  const path=usePathname();
+  const { todoId } = useLocalSearchParams<{ todoId: string }>();  
+
+  const query = useTodo(todoId);
   const deleteMutation = useDeleteTodo();
   const saveMutation = useSaveTodo();
   const router = useRouter();
-  let initType = useRef("");
-
+  
   let todo = useMemo(() => {
     return {} as Todo;
   }, []);
+  
   const [disablaSave, setDisableSeve] = useState(true);
 
-  //const menu=useContext(KbMenuContext)
-
-  //useEffect(()=>{
-   // menu.setMenuFun(idTodo);  
-  //})
+  
 
   const deleteTodo = () => {
-    deleteMutation.mutate(String(idTodo));
+    deleteMutation.mutate(String(todoId));
     router.back();
   };
 
   const saveTodo = () => {
     saveMutation.mutate(todo);
-    xlog(todo);
+    
   };
 
   
-  xlog('before',initType.current)
-  if (query.isSuccess && query.data) {
-    todo = query.data;
-    initType.current = todo.type;
-  } else {
+  
+  if (!(query.isSuccess && query.data))
     return;
-  }
+  
+  if (query.data.type == "list") {
+    return <KbListTodo id={todoId} />;
+  }  
+  
 
-  xlog('render',initType.current)
-
-  
-  
-  if (initType.current == "list") {
-    xlog(123, todo.type);
-    return <KbListTodo />;
-  }
-  
   return (
     <View style={styles.container}>
       

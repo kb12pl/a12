@@ -2,13 +2,13 @@
   "expo": {
     "name": "a12",
     "slug": "a12",
-    "version": "1.0.0",
+    "version": "15.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/kb12.png",
     "scheme": "a12",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./assets/images/splash.png",
+      "image": "./assets/images/kb12.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,15 +20,16 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/kb12.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.a12"
+      "package": "com.kb12pl.a12",
+      "versionCode":17
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/kb12.png"
     },
     "plugins": [
       "expo-router"
@@ -41,7 +42,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "517bdb68-cd6c-4a71-b687-c3984cbd1e98"
+        "projectId": "5467eeb1-228f-40ea-a204-115156d0d839"
       }
     }
   }

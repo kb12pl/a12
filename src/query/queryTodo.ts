@@ -1,5 +1,5 @@
 //import { getTodos } from "@/fetchLocal/todoFetchLocal";
-import { getTodos,getTodo, createTodo, deleteTodo, getTypesTodo, saveTodo, getListsTodo, getStartTodo } from "@/src/apiSupabase/apiSupabaseTodo";
+import { getTodos,getTodo, createTodo, deleteTodo, getTypesTodo, saveTodo, getListsTodo, getStartTodo, addTodo } from "@/src/apiSupabase/apiSupabaseTodo";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import xlog from "../xlog";
 import { Todo } from "@/src/types/todo";
@@ -10,14 +10,15 @@ import { useAuth } from "@/src/provider/AuthProvider";
 export const todoQuery={ queryKey: ['todos'], queryFn: getTodos }
 
 
+export function useListTodo(id:string){  
+  return useQuery({
+    queryKey:['list',{id}],
+    queryFn:()=>getListsTodo(id),
+    staleTime: 15 * 1000,
+  })
+}
 
 
-export function useGroupsTodo(){
-    return useQuery({ 
-      queryKey: ['groups'], 
-      queryFn: getListsTodo 
-  })  
-}    
 
 export function useTypesTodo(){
   return useQuery({
@@ -38,6 +39,8 @@ export function useTodo(id:string){
 }
 
 
+
+
 export function useStartTodo(){
   return useQuery({ 
     queryKey: ['start'], 
@@ -46,6 +49,23 @@ export function useStartTodo(){
 }    
 
 
+export function useAddTodo() {  
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Todo) => {      
+      return addTodo(data)
+    },
+    onSettled: async (_, error) => {
+      console.log("settled");
+      if (error) {
+        console.log(error);
+      } else {
+        await queryClient.invalidateQueries({ queryKey: ["todos"] });
+      }
+    },
+  });
+}
+
 export function useCreateTodo() {  
   const queryClient = useQueryClient();
 
@@ -53,18 +73,6 @@ export function useCreateTodo() {
     mutationFn: (data: Todo) => {      
       return createTodo(data)
     },
-    onMutate: () => {
-      console.log("mutate");
-    },
-
-    onError: () => {
-      console.log("error");
-    },
-
-    onSuccess: () => {
-      console.log("success");
-    },
-
     onSettled: async (_, error) => {
       console.log("settled");
       if (error) {

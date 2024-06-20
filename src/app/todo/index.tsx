@@ -6,14 +6,11 @@ import { useStartTodo } from "@/src/query/queryTodo";
 
 
 export default function IndexTodo() {
-  xlog("index todo", usePathname());
-
+  //xlog("index todo", usePathname());
   const query = useStartTodo();
-  useEffect(()=>{
+  useEffect(()=>{    
     if (query.isSuccess) 
-      router.replace(`/(drawer)/todo/${query.data?.id}`);
-
-  },[query]);
-
+      router.replace(`/todo/${query.data?.id}`);
+  },[query]);  
   return <Text>Start</Text>;
 }
