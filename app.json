@@ -24,7 +24,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.kb12pl.a12",
-      "versionCode":17
+      "versionCode": 17
     },
     "web": {
       "bundler": "metro",
@@ -32,7 +32,9 @@
       "favicon": "./assets/images/kb12.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
