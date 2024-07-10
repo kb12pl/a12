@@ -4,6 +4,7 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import { supabase } from '../config/initSupabase';
 import xlog from '@/src/xlog';
 
+
 const Login = () => {
   const [email, setEmail] = useState(process.env.EXPO_PUBLIC_SUPABASE_USER||'');
   const [password, setPassword] = useState(process.env.EXPO_PUBLIC_SUPABASE_PASSWORD||'');
